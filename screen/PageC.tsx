@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
-import {ListItem} from '@rneui/base';
+import {Button, ListItem} from '@rneui/base';
 import {ScrollView, View, Text, Alert} from 'react-native';
 import {testProps} from '../lib/utils';
+import Modal from 'react-native-modal';
+import {useState} from 'react';
 
 const viewList = [
   {
@@ -52,7 +55,8 @@ const viewList = [
   },
 ];
 
-export default function PageA() {
+export default function PageC() {
+  const [isVisible, setIsVisible] = useState(false);
   const showAlert = (data: {name: any; desc: any; screen?: string}) => {
     Alert.alert(
       `${data.name}`,
@@ -61,34 +65,59 @@ export default function PageA() {
       {cancelable: false},
     );
   };
+
+  const toggleModal = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
-    <View>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text
         style={{
           fontSize: 16,
           padding: 10,
           textAlign: 'center',
         }}>
-        Accessible On (Parrent) with testid & accessibilityLabel id
+        Accessible false (Parrent) with bottom modal
       </Text>
-      <ScrollView accessible={true}>
-        {viewList.map((data, i) => {
-          return (
-            <ListItem
-              key={i}
-              bottomDivider
-              {...testProps(data.name)}
-              onPress={() => {
-                showAlert(data);
-              }}>
-              <ListItem.Content>
-                <ListItem.Title>{data.name}</ListItem.Title>
-                <ListItem.Subtitle>{data.desc}</ListItem.Subtitle>
-              </ListItem.Content>
-            </ListItem>
-          );
-        })}
-      </ScrollView>
+      <Button onPress={toggleModal}>
+        <Text style={{color: 'white'}}>Open Bottom Modal</Text>
+      </Button>
+      <Modal
+        isVisible={isVisible}
+        onBackdropPress={toggleModal}
+        style={{
+          justifyContent: 'flex-end',
+          margin: 0,
+        }}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            padding: 15,
+            height: 550,
+            borderRadius: 10,
+          }}
+          accessible={false}>
+          <ScrollView>
+            {viewList.map((data, i) => {
+              return (
+                <ListItem
+                  key={i}
+                  bottomDivider
+                  {...testProps(data.name)}
+                  onPress={() => {
+                    showAlert(data);
+                  }}>
+                  <ListItem.Content>
+                    <ListItem.Title>{data.name}</ListItem.Title>
+                    <ListItem.Subtitle>{data.desc}</ListItem.Subtitle>
+                  </ListItem.Content>
+                </ListItem>
+              );
+            })}
+          </ScrollView>
+        </View>
+      </Modal>
     </View>
   );
 }
