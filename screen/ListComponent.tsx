@@ -52,7 +52,7 @@ const viewList = [
   },
 ];
 
-export default function PageA() {
+export default function ListComponent() {
   const showAlert = (data: {name: any; desc: any; screen?: string}) => {
     Alert.alert(
       `${data.name}`,
@@ -71,25 +71,23 @@ export default function PageA() {
         }}>
         Accessible On (Parrent) with testid & accessibilityLabel id
       </Text>
-      <ScrollView>
-        <View accessible={true}>
-          {viewList.map((data, i) => {
-            return (
-              <ListItem
-                key={i}
-                bottomDivider
-                {...testProps(data.name)}
-                onPress={() => {
-                  showAlert(data);
-                }}>
-                <ListItem.Content>
-                  <ListItem.Title>{data.name}</ListItem.Title>
-                  <ListItem.Subtitle>{data.desc}</ListItem.Subtitle>
-                </ListItem.Content>
-              </ListItem>
-            );
-          })}
-        </View>
+      <ScrollView accessible={true}>
+        {viewList.map((data, i) => {
+          return (
+            <ListItem
+              key={i}
+              bottomDivider
+              {...testProps(data.name)}
+              onPress={() => {
+                showAlert(data);
+              }}>
+              <ListItem.Content>
+                <ListItem.Title>{data.name}</ListItem.Title>
+                <ListItem.Subtitle>{data.desc}</ListItem.Subtitle>
+              </ListItem.Content>
+            </ListItem>
+          );
+        })}
       </ScrollView>
     </View>
   );
