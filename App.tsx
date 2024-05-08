@@ -4,9 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import React from 'react';
 
-import PageA from './screen/PageA';
-import PageC from './screen/PageC';
 import WebViewComponent from './screen/Webview';
+import ModalComponent from './screen/ModalComponent';
+import ListComponent from './screen/ListComponent';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,8 +24,8 @@ function App() {
           },
           tabBarIconStyle: {display: 'none', padding: 0, margin: 0},
         }}>
-        <Tab.Screen name="List" component={PageA} />
-        <Tab.Screen name="Modal" component={PageC} />
+        <Tab.Screen name="List" component={ListComponent} />
+        <Tab.Screen name="Modal" component={ModalComponent} />
         <Tab.Screen name="Web View" component={WebViewComponent} />
       </Tab.Navigator>
     </NavigationContainer>

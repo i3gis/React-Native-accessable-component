@@ -56,11 +56,7 @@ const WebViewComponent = () => {
           </Text>
         </View>
       ) : (
-        <WebView
-          ref={webViewRef}
-          source={{uri: url}} // Memuat URL yang dimasukkan pengguna
-          style={{flex: 1}}
-        />
+        <WebView ref={webViewRef} source={{uri: url}} style={{flex: 1}} />
       )}
     </View>
   );

@@ -55,7 +55,7 @@ const viewList = [
   },
 ];
 
-export default function PageC() {
+export default function ModalComponent() {
   const [isVisible, setIsVisible] = useState(false);
   const showAlert = (data: {name: any; desc: any; screen?: string}) => {
     Alert.alert(

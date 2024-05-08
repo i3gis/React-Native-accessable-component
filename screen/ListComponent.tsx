@@ -52,7 +52,7 @@ const viewList = [
   },
 ];
 
-export default function PageA() {
+export default function ListComponent() {
   const showAlert = (data: {name: any; desc: any; screen?: string}) => {
     Alert.alert(
       `${data.name}`,
