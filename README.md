@@ -20,7 +20,18 @@ remove .xcode.env.local
 cd ..
 ```
 
-## Step 3: Build application into simulator
+## Step 3: Add local.properties into folder android
+
+The local.properties file is typically used in Android development projects. It's a file where you specify local settings such as the SDK location
+
+```bash
+example:
+sdk.dir = /Users/{computername}/Library/Android/sdk
+
+* replace {computername}
+```
+
+## Step 4: Build application into simulator
 
 To build or running application you can run this syntax:
 
